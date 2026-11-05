@@ -16,7 +16,10 @@ describe("ErrorState", () => {
   it("shows the message and calls retry", () => {
     const onRetry = vi.fn();
     render(
-      <ErrorState message="The transfers could not be loaded." onRetry={onRetry} />,
+      <ErrorState
+        message="The transfers could not be loaded."
+        onRetry={onRetry}
+      />,
     );
 
     expect(screen.getByRole("alert").textContent).toContain(
