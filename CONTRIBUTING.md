@@ -17,14 +17,14 @@ read that first.
 git clone https://github.com/family-pot/family-pot-web.git
 cd family-pot-web
 pnpm install
-cp .env.example .env.local   # set NEXT_PUBLIC_API_URL to your running family-pot-api
+cp .env.example .env.local # set NEXT_PUBLIC_API_URL to your running family-pot-api
 pnpm dev
 \`\`\`
 
 Before opening a PR:
 
 \`\`\`bash
-pnpm check   # format:check, lint, typecheck, test, build
+pnpm check # format:check, lint, typecheck, test, build
 \`\`\`
 
 ## Scope reminder

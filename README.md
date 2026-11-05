@@ -30,19 +30,22 @@ family-pot-docs.
 
 Requirements: Node 22+, pnpm.
 
-\`\`\`bash
+```bash
 git clone https://github.com/family-pot/family-pot-web.git
 cd family-pot-web
 pnpm install
 cp .env.example .env.local   # set NEXT_PUBLIC_API_URL to your running family-pot-api
 pnpm dev                     # http://localhost:3000
-\`\`\`
+```
 
 Run everything CI runs:
 
-\`\`\`bash
+```bash
 pnpm check   # format:check, lint, typecheck, test, build
-\`\`\`
+```
+
+`pnpm check` is exactly the command used by the GitHub Actions workflow. CI uses
+Node 22 and installs with `pnpm install --frozen-lockfile`.
 
 ## Contributing
 
