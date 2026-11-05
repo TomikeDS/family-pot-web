@@ -1,16 +1,14 @@
-export type TransferStatus =
-  | "pending"
-  | "completed"
-  | "failed"
-  | "cancelled";
+export type TransferStatus = "pending" | "completed" | "failed" | "cancelled";
 
 export interface Recipient {
   id: string;
   name: string;
-  relationship: string;
+  /** ISO 3166-1 alpha-2 code, for example NG. See `src/data/countries.ts`. */
   country: string;
+  notes?: string;
+  relationship?: string;
   /** ISO 4217 code for the currency the recipient is paid in. */
-  currency: string;
+  currency?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -45,10 +43,7 @@ export type CreateTransferInput = Omit<
   Partial<Pick<Transfer, "status" | "exchangeRate" | "fee">>;
 
 export type UpdateTransferInput = Partial<
-  Pick<
-    Transfer,
-    "amount" | "currency" | "exchangeRate" | "fee" | "status"
-  >
+  Pick<Transfer, "amount" | "currency" | "exchangeRate" | "fee" | "status">
 >;
 
 export interface Repository<T, CreateInput, UpdateInput> {
