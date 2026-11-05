@@ -47,6 +47,22 @@ pnpm check   # format:check, lint, typecheck, test, build
 `pnpm check` is exactly the command used by the GitHub Actions workflow. CI uses
 Node 22 and installs with `pnpm install --frozen-lockfile`.
 
+## Shared layout and state components
+
+The root layout in `app/layout.tsx` provides the header, primary navigation, footer, skip
+link and `<main>` landmark. `Dashboard`, `Recipients` and `Transfers` are placeholder routes
+reachable from the navigation on desktop and narrow screens.
+
+Reusable UI lives in `src/components`:
+
+- `LoadingState` — `role="status"`, polite live region and an optional label.
+- `ErrorState` — `role="alert"`, a message and an optional `onRetry` callback.
+- `EmptyState` — a title, optional description and optional action.
+- `SiteHeader` / `SiteFooter` — the shared frame.
+
+All controls use native elements, visible focus styles and semantic landmarks. Import
+components from `@/src/components`.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) and the shared guidelines in family-pot-docs. Issues are
