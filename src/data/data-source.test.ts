@@ -80,12 +80,12 @@ describe("MockDataSource", () => {
     await expect(dataSource.recipients.get("missing")).rejects.toBeInstanceOf(
       NotFoundError,
     );
-    await expect(dataSource.transfers.update("missing", {})).rejects.toBeInstanceOf(
-      NotFoundError,
-    );
-    await expect(dataSource.recipients.delete("missing")).rejects.toBeInstanceOf(
-      NotFoundError,
-    );
+    await expect(
+      dataSource.transfers.update("missing", {}),
+    ).rejects.toBeInstanceOf(NotFoundError);
+    await expect(
+      dataSource.recipients.delete("missing"),
+    ).rejects.toBeInstanceOf(NotFoundError);
   });
 
   it("rejects a transfer for an unknown recipient", async () => {

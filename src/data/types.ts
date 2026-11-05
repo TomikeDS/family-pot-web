@@ -1,8 +1,4 @@
-export type TransferStatus =
-  | "pending"
-  | "completed"
-  | "failed"
-  | "cancelled";
+export type TransferStatus = "pending" | "completed" | "failed" | "cancelled";
 
 export interface Recipient {
   id: string;
@@ -45,10 +41,7 @@ export type CreateTransferInput = Omit<
   Partial<Pick<Transfer, "status" | "exchangeRate" | "fee">>;
 
 export type UpdateTransferInput = Partial<
-  Pick<
-    Transfer,
-    "amount" | "currency" | "exchangeRate" | "fee" | "status"
-  >
+  Pick<Transfer, "amount" | "currency" | "exchangeRate" | "fee" | "status">
 >;
 
 export interface Repository<T, CreateInput, UpdateInput> {
