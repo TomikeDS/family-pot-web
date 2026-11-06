@@ -47,25 +47,21 @@ pnpm check   # format:check, lint, typecheck, test, build
 `pnpm check` is exactly the command used by the GitHub Actions workflow. CI uses
 Node 22 and installs with `pnpm install --frozen-lockfile`.
 
-## How data works in this repo
+## Shared layout and state components
 
-All page and component data goes through `src/data/index.ts`. It exports a single
-`DataSource` with `recipients` and `transfers` repositories, each supporting `list`, `get`,
-`create`, `update` and `delete`. The data source is chosen once from
-`NEXT_PUBLIC_DATA_SOURCE`:
+The root layout in `app/layout.tsx` provides the header, primary navigation, footer, skip
+link and `<main>` landmark. `Dashboard`, `Recipients` and `Transfers` are placeholder routes
+reachable from the navigation on desktop and narrow screens.
 
-- `mock` (default) — `MockDataSource` keeps an in-memory store seeded from
-  `src/data/sample-data.ts`. The sample records are fake and clearly labelled; amounts,
-  exchange rates and fees are decimal strings. A short artificial delay and an optional
-  failure mode make loading and error states easy to exercise.
-- `api` — `ApiDataSource` is a typed stub that throws "not connected" until the backend is
-  wired up. It never fabricates a successful response.
+Reusable UI lives in `src/components`:
 
-Pages should import `getDataSource()` (or the shared `dataSource`) and must not import
-sample data directly. Switching implementations later changes this one module, not the UI.
+- `LoadingState` — `role="status"`, polite live region and an optional label.
+- `ErrorState` — `role="alert"`, a message and an optional `onRetry` callback.
+- `EmptyState` — a title, optional description and optional action.
+- `SiteHeader` / `SiteFooter` — the shared frame.
 
-Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_DATA_SOURCE` or
-`NEXT_PUBLIC_API_URL` when needed.
+All controls use native elements, visible focus styles and semantic landmarks. Import
+components from `@/src/components`.
 
 ## Contributing
 
